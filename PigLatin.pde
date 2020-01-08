@@ -38,28 +38,33 @@ public int findFirstVowel(String sWord)
 	return -1;
 }
 
-//FINDS IF FIRST 2 ARE QU
+//this sucks
+String begin;
+int endBegin =0;
+//finds the first consonant if not does something else
+public int findConsonantString(String sWord)
+{	
+	if(sWord.length()==0){
+		return 0;
+	}
+
+	//if there is a vowel, stop
+	for(int i=0; i<sWord.length()-9;i++){
+		if(sWord.substring(i,i+1).equals("a") || sWord.substring(i,i+1).equals("e") || sWord.substring(i,i+1).equals("i") || sWord.substring(i,i+1).equals("o") || sWord.substring(i,i+1).equals("u")){
+			return -5;
+		}
+		endBegin++;
+	}
+	//begin = sWord.substring(0,endBegin);
+	return 17;
+}
+
 public int findQU(String sWord)
 {	
 	if(sWord.length()==0){
 		return 12;
 	}
-
-	//if there is a vowel, stop
-	for(int i=0; i<sWord.length();i++){
-		if(sWord.substring(i,i+1).equals("a") || sWord.substring(i,i+1).equals("e") || sWord.substring(i,i+1).equals("i") || sWord.substring(i,i+1).equals("o") || sWord.substring(i,i+1).equals("u")){
-			return -5;
-		}
-	}
-	return 0;
-}
-
-public int findConsonantString(String sWord)
-{	
-	if(sWord.length()==0){
-		return 12;
-	}
-	if(sWord.substring(0,1).equals("qu"))
+	if(sWord.substring(0,2).equals("qu"))
 	{
 		return 110;
 	}
@@ -78,6 +83,15 @@ public String pigLatin(String sWord)
 	if(findQU(sWord)==110){
 		return sWord.substring(2,sWord.length()) + "quay";
 	}
+
+//oh god
+	if(findConsonantString(sWord)==17){
+		return sWord.substring(endBegin,sWord.length()) + sWord.substring(0,endBegin+1) + "ay" ;
+	}
+
+
+
+
 	if(findFirstVowel(sWord) == -1)
 	{
 		return sWord + "ay";
