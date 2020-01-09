@@ -25,7 +25,7 @@ public int findFirstVowel(String sWord)
 	/*
 	check if first is vowel
 	for(int i=0; i<sWord.length();i++){
-		if(sWord.substring(i,i+1).equals("a") || sWord.substring(i,i+1).equals("e") || sWord.substring(i,i+1).equals("i") || sWord.substring(i,i+1).equals("o") || sWord.substring(i,i+1).equals("u")){
+		if(sWord.substring(2,3).equals("a") || sWord.substring(2,3).equals("e") || sWord.substring(2,3).equals("i") || sWord.substring(2,3).equals("o") || sWord.substring(2,3).equals("u")){
 			return 1;
 		}
 	}
@@ -42,18 +42,46 @@ public int findFirstVowel(String sWord)
 String begin;
 int endBegin =0;
 //finds the first consonant if not does something else
-public int findConsonantString(String sWord)
+public int findConsonantStringOne(String sWord)
 {	
 	if(sWord.length()==0){
 		return 0;
 	}
 
 	//if there is a vowel, stop
-	for(int i=0; i<sWord.length()-9;i++){
-		if(sWord.substring(i,i+1).equals("a") || sWord.substring(i,i+1).equals("e") || sWord.substring(i,i+1).equals("i") || sWord.substring(i,i+1).equals("o") || sWord.substring(i,i+1).equals("u")){
-			return -5;
-		}
-		endBegin++;
+	
+	if(sWord.substring(0,1).equals("a") || sWord.substring(0,1).equals("e") || sWord.substring(0,1).equals("i") || sWord.substring(0,1).equals("o") || sWord.substring(0,1).equals("u")){
+		return -5;
+	}
+	//begin = sWord.substring(0,endBegin);
+	return 17;
+}
+
+public int findConsonantStringTwo(String sWord)
+{	
+	if(sWord.length()==0){
+		return 0;
+	}
+
+	//if there is a vowel, stop
+	
+	if(sWord.substring(1,2).equals("a") || sWord.substring(1,2).equals("e") || sWord.substring(1,2).equals("i") || sWord.substring(1,2).equals("o") || sWord.substring(1,2).equals("u")){
+		return -5;
+	}
+	//begin = sWord.substring(0,endBegin);
+	return 17;
+}
+
+public int findConsonantStringThree(String sWord)
+{	
+	if(sWord.length()==0){
+		return 0;
+	}
+
+	//if there is a vowel, stop
+	
+	if(sWord.substring(2,3).equals("a") || sWord.substring(2,3).equals("e") || sWord.substring(2,3).equals("i") || sWord.substring(2,3).equals("o") || sWord.substring(2,3).equals("u")){
+		return -5;
 	}
 	//begin = sWord.substring(0,endBegin);
 	return 17;
@@ -85,23 +113,52 @@ public String pigLatin(String sWord)
 	}
 
 //oh god
-	if(findConsonantString(sWord)==17){
-		return sWord.substring(endBegin,sWord.length()) + sWord.substring(0,endBegin+1) + "ay" ;
-	}
-
-
-
-
-	if(findFirstVowel(sWord) == -1)
-	{
-		return sWord + "ay";
-	}
-	else if(findFirstVowel(sWord) == 1)
+	if(findFirstVowel(sWord) == 1)
 	{
 		return sWord + "way";
 	}
+
+
+	/*
+	if(findConsonantStringThree(sWord)==17){
+
+		return sWord.substring(3,sWord.length()) + sWord.substring(0,3) + "ay" ;
+
+	}else if(findConsonantStringTwo(sWord)==17){
+
+		return sWord.substring(2,sWord.length()) + sWord.substring(0,2) + "ay" ;
+
+	}else if(findConsonantStringOne(sWord)==17){
+
+		return sWord.substring(1,sWord.length()) + sWord.substring(0,1) + "ay" ;
+
+	}
+
+	*/
+
+	if(findConsonantStringOne(sWord)==17){
+		if(findConsonantStringTwo(sWord)==17){
+			if(findConsonantStringThree(sWord)==17){
+
+				return sWord.substring(3,sWord.length()) + sWord.substring(0,3) + "ay" ;
+
+			}
+			return sWord.substring(2,sWord.length()) + sWord.substring(0,2) + "ay" ;
+
+		}
+		return sWord.substring(1,sWord.length()) + sWord.substring(0,1) + "ay" ;
+
+	}else{
+		return sWord.substring(1,sWord.length()) + sWord.substring(0,1) + "ay" ;
+	}
+
+
+
+	/*
 	else
 	{
 		return "Error!";
 	}
+	*/
+	//return "AAAAAAAAAAAAAAAAAAAAAAAAAAA";
 }
